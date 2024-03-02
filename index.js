@@ -16,106 +16,109 @@ increases the scope of the project.
 */
 
 function reverseText() {
-    let punctuation;
-    let sentence = document.getElementById("input").value;
-    // Trapping
-    // 0
-    let isOneSentence = isThereOneSentence(sentence);
-    console.log("isOneSentence:" + isOneSentence);    
+  let punctuation;
+  let sentence = document.getElementById("input").value;
+  // Trapping
+  // 0
+  let isOneSentence = isThereOneSentence(sentence);
+  console.log("isOneSentence:" + isOneSentence);
 
-    if (isOneSentence) {
+  if (isOneSentence) {
+    // 1
+    // refer to isOneSentence return for explaination
 
-        // 1
-        // refer to isOneSentence return for explaination
-        
-        // console.log(sentence);
-        if (isOneSentence != 1) {  // 1 means there is no punctuation but it is one sentence
-            let results = removeAndReturnPunctuation(sentence);
-            sentence = results[0];
-            punctuation = results[1]
-        }
-        // console.log(sentence);
-        // console.log(punctuation);
+    // console.log(sentence);
+    if (isOneSentence != 1) {
+      // 1 means there is no punctuation but it is one sentence
+      let results = removeAndReturnPunctuation(sentence);
+      sentence = results[0];
+      punctuation = results[1];
+    }
+    // console.log(sentence);
+    // console.log(punctuation);
 
-        // 2
-        sentence = unCapitalizeSentence(sentence);
-        
+    // 2
+    sentence = unCapitalizeSentence(sentence);
 
-        // Convert to List and Reverse
-  
-        list = sentence.split(" ");
-        console.log(list);
-        document.getElementById("results").innerHTML = 
-        `
-        <div>   
-        <p id="rev"></p>
-        </div>
-        `
-        // https://www.geeksforgeeks.org/reverse-an-array-in-javascript/
-        list.reverse();
+    // Convert to List and Reverse
 
-        // 3
-        sentence = list.join(" ");
-        sentence = capitalizeFirstWord(sentence);
-        sentence += punctuation;
-        document.getElementById("rev").innerHTML = sentence;
+    list = sentence.split(" ");
+    console.log(list);
+    // https://www.geeksforgeeks.org/reverse-an-array-in-javascript/
+    list.reverse();
 
-    } else
-    {
-     // Trap Case   
-    } 
+    // 3
+    sentence = list.join(" ");
+    sentence = capitalizeFirstWord(sentence);
+    if (punctuation) {
+      sentence += punctuation;
+    }
+    document.getElementById("rev").innerHTML = sentence;
+  } else {
+    // Trap Case
+    document.getElementById("rev").innerHTML = `
+    Input is not ONE sentence.  
+    <br> Check your punctuations, it should end with just one or have no punctuations at all in the sentence.
+    <br> (e.g. "Hello world!" or "Hello world" but NOT "Hello! World")
+    `;
+  }
 }
 
 // 0
 function isThereOneSentence(sentence) {
-     // Code from https://www.tutorialspoint.com/count-total-punctuations-in-a-string-javascript
-     // Start Copied Code
-     const countPunctuation = sentence => {
-        const punct = "!,\;\.-?";
-        let count = 0;
-        for(let i = 0; i < sentence.length; i++){
-        if(!punct.includes(sentence[i])){
-            continue;
-        };
-        count++;
-        };
-        return count;
-    };
-    // End Copied Code
-
-    // Returns punctuation if there is one sentence and it ends with punctuation
-    // Returns number if sentence but no punctuation
-    let count = countPunctuation(sentence);
-    if (count == 1) {
-        if (sentence.endsWith(".") || sentence.endsWith("!") || sentence.endsWith(";") || sentence.endsWith("-") || sentence.endsWith("?")) {
-            return sentence.length - 1;
-        } // returns true
-    } else if (count == 0) {
-        return 1;
-    } else {
-        return false;
+  // Code from https://www.tutorialspoint.com/count-total-punctuations-in-a-string-javascript
+  // Start Copied Code
+  const countPunctuation = (sentence) => {
+    const punct = "!,;.-?";
+    let count = 0;
+    for (let i = 0; i < sentence.length; i++) {
+      if (!punct.includes(sentence[i])) {
+        continue;
+      }
+      count++;
     }
+    return count;
+  };
+  // End Copied Code
+
+  // Returns punctuation if there is one sentence and it ends with punctuation
+  // Returns number if sentence but no punctuation
+  let count = countPunctuation(sentence);
+  if (count == 1) {
+    if (
+      sentence.endsWith(".") ||
+      sentence.endsWith("!") ||
+      sentence.endsWith(";") ||
+      sentence.endsWith("-") ||
+      sentence.endsWith("?")
+    ) {
+      return sentence.length - 1;
+    } // returns true
+  } else if (count == 0) {
+    return 1;
+  } else {
+    return false;
+  }
 }
 
 // 1
 function removeAndReturnPunctuation(sentence) {
-    if (sentence) {
-        let punctuation = sentence[sentence.length - 1];
-        let sentenceRemovedPunct = sentence.slice(0, -1);
-        return [sentenceRemovedPunct, punctuation];
-    }
+  if (sentence) {
+    let punctuation = sentence[sentence.length - 1];
+    let sentenceRemovedPunct = sentence.slice(0, -1);
+    return [sentenceRemovedPunct, punctuation];
+  }
 }
 
 // 2
 function unCapitalizeSentence(sentence) {
-    if (sentence) {
-        return sentence.toLowerCase();
-    }
+  if (sentence) {
+    return sentence.toLowerCase();
+  }
 }
 
 // 3
 function capitalizeFirstWord(sentence) {
-    // https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
-    return sentence.charAt(0).toUpperCase() + sentence.slice(1);
-
+  // https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
+  return sentence.charAt(0).toUpperCase() + sentence.slice(1);
 }

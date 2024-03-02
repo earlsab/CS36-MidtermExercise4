@@ -12,3 +12,28 @@ body {
   /* border: 3px solid grey; */
   padding: 10px;
 }
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h4 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+.row{
+    display:flex;
+    /* gap: 15px */
+}
+button {
+    font-family: Arial, Helvetica, sans-serif;
+    /* padding: 10px */
+}
+
+input {
+    font-family: Arial, Helvetica, sans-serif;
+}
