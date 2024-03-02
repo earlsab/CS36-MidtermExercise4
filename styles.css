@@ -29,6 +29,10 @@ p {
     display:flex;
     /* gap: 15px */
 }
+.example{
+    font-style: italic;
+    color: grey;
+}
 button {
     font-family: Arial, Helvetica, sans-serif;
     /* padding: 10px */

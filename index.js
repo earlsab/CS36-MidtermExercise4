@@ -59,7 +59,7 @@ function reverseText() {
     document.getElementById("rev").innerHTML = `
     Input is not ONE sentence.  
     <br> Check your punctuations, it should end with just one or have no punctuations at all in the sentence.
-    <br> (e.g. "Hello world!" or "Hello world" but NOT "Hello! World")
+    <br> <p class="example">(e.g. "Hello world!" or "Hello world" but NOT "Hello! World")</p>
     `;
   }
 }
